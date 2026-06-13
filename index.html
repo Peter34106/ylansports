@@ -1,0 +1,702 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>上海悠兰体育发展有限公司 — 赋能健康职场生活</title>
+<style>
+:root {
+  --primary: #1B5E38;
+  --primary-light: #2E8B57;
+  --accent: #FF6B35;
+  --accent-light: #FF8C5A;
+  --dark: #1A1A2E;
+  --text: #2D3436;
+  --text-light: #636E72;
+  --bg: #FAFAFA;
+  --white: #FFFFFF;
+  --card-bg: #F0F4F0;
+  --gradient: linear-gradient(135deg, #1B5E38 0%, #2E8B57 50%, #1A3A28 100%);
+  --shadow: 0 4px 24px rgba(0,0,0,0.08);
+  --shadow-lg: 0 12px 48px rgba(0,0,0,0.12);
+  --radius: 16px;
+  --radius-sm: 8px;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+  color: var(--text);
+  background: var(--bg);
+  line-height: 1.7;
+  overflow-x: hidden;
+}
+
+/* Navigation */
+.nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+  background: rgba(255,255,255,0.95);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(0,0,0,0.06);
+  padding: 0 40px;
+  display: flex; align-items: center; justify-content: space-between;
+  height: 72px;
+  transition: all 0.3s;
+}
+.nav.scrolled { box-shadow: var(--shadow); }
+.nav-logo {
+  font-size: 22px; font-weight: 700; color: var(--primary);
+  letter-spacing: -0.5px;
+}
+.nav-logo span { color: var(--accent); }
+.nav-links { display: flex; gap: 32px; list-style: none; }
+.nav-links a {
+  text-decoration: none; color: var(--text-light);
+  font-size: 15px; font-weight: 500;
+  transition: color 0.2s;
+}
+.nav-links a:hover { color: var(--primary); }
+.nav-cta {
+  background: var(--accent); color: var(--white) !important;
+  padding: 10px 24px; border-radius: 50px;
+  font-weight: 600 !important;
+}
+.nav-cta:hover { background: var(--accent-light); color: var(--white) !important; }
+
+/* Hero */
+.hero {
+  margin-top: 72px;
+  min-height: 90vh;
+  background: var(--gradient);
+  display: flex; align-items: center; justify-content: center;
+  position: relative; overflow: hidden;
+  padding: 80px 40px;
+}
+.hero::before {
+  content: ''; position: absolute;
+  width: 600px; height: 600px;
+  background: radial-gradient(circle, rgba(255,255,255,0.08) 0%, transparent 70%);
+  top: -200px; right: -100px;
+}
+.hero::after {
+  content: ''; position: absolute;
+  width: 400px; height: 400px;
+  background: radial-gradient(circle, rgba(255,107,53,0.12) 0%, transparent 70%);
+  bottom: -100px; left: -50px;
+}
+.hero-content {
+  text-align: center; position: relative; z-index: 2;
+  max-width: 800px;
+}
+.hero-badge {
+  display: inline-block; background: rgba(255,255,255,0.15);
+  color: rgba(255,255,255,0.9);
+  padding: 8px 20px; border-radius: 50px;
+  font-size: 14px; font-weight: 500;
+  margin-bottom: 24px;
+  backdrop-filter: blur(10px);
+}
+.hero h1 {
+  font-size: 56px; font-weight: 800; color: var(--white);
+  line-height: 1.2; margin-bottom: 20px;
+  letter-spacing: -1px;
+}
+.hero h1 span { color: var(--accent-light); }
+.hero p {
+  font-size: 20px; color: rgba(255,255,255,0.8);
+  margin-bottom: 40px; font-weight: 400;
+}
+.hero-stats {
+  display: flex; gap: 48px; justify-content: center;
+  margin-top: 48px;
+}
+.hero-stat { text-align: center; }
+.hero-stat .num {
+  font-size: 42px; font-weight: 800; color: var(--white);
+  line-height: 1;
+}
+.hero-stat .label {
+  font-size: 14px; color: rgba(255,255,255,0.7);
+  margin-top: 8px;
+}
+
+/* Sections */
+.section {
+  padding: 100px 40px;
+  max-width: 1200px; margin: 0 auto;
+}
+.section-label {
+  font-size: 14px; font-weight: 600; color: var(--accent);
+  text-transform: uppercase; letter-spacing: 2px;
+  margin-bottom: 12px;
+}
+.section-title {
+  font-size: 40px; font-weight: 700; color: var(--dark);
+  margin-bottom: 16px; letter-spacing: -0.5px;
+}
+.section-desc {
+  font-size: 18px; color: var(--text-light);
+  margin-bottom: 60px; max-width: 600px;
+}
+
+/* Cards */
+.cards-grid {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 24px;
+}
+.card {
+  background: var(--white); border-radius: var(--radius);
+  padding: 36px 32px;
+  box-shadow: var(--shadow);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+.card:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); }
+.card-icon {
+  width: 56px; height: 56px; border-radius: 14px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 24px; margin-bottom: 20px;
+}
+.card-icon.green { background: #E8F5E9; color: var(--primary); }
+.card-icon.orange { background: #FFF3E0; color: var(--accent); }
+.card-icon.blue { background: #E3F2FD; color: #1565C0; }
+.card-icon.purple { background: #F3E5F5; color: #7B1FA2; }
+.card h3 { font-size: 20px; font-weight: 700; margin-bottom: 12px; color: var(--dark); }
+.card p { font-size: 15px; color: var(--text-light); line-height: 1.8; }
+
+/* Timeline */
+.timeline {
+  position: relative; padding-left: 40px;
+}
+.timeline::before {
+  content: ''; position: absolute; left: 15px; top: 0; bottom: 0;
+  width: 2px; background: linear-gradient(to bottom, var(--primary-light), var(--accent-light));
+}
+.timeline-item {
+  position: relative; margin-bottom: 40px; padding-left: 32px;
+}
+.timeline-item::before {
+  content: ''; position: absolute; left: -31px; top: 6px;
+  width: 14px; height: 14px; border-radius: 50%;
+  background: var(--white); border: 3px solid var(--primary-light);
+}
+.timeline-item:last-child::before { border-color: var(--accent); }
+.timeline-year { font-size: 14px; font-weight: 700; color: var(--accent); margin-bottom: 4px; }
+.timeline-title { font-size: 18px; font-weight: 700; color: var(--dark); margin-bottom: 4px; }
+.timeline-desc { font-size: 15px; color: var(--text-light); }
+
+/* Business Grid */
+.biz-section {
+  margin-bottom: 80px;
+}
+.biz-section h3 {
+  font-size: 28px; font-weight: 700; color: var(--dark);
+  margin-bottom: 8px;
+}
+.biz-section .subtitle {
+  font-size: 16px; color: var(--text-light);
+  margin-bottom: 32px;
+}
+.tag-list {
+  display: flex; flex-wrap: wrap; gap: 12px;
+  margin-bottom: 24px;
+}
+.tag {
+  background: var(--card-bg); color: var(--primary);
+  padding: 8px 16px; border-radius: 50px;
+  font-size: 14px; font-weight: 500;
+}
+
+/* Clients */
+.client-logos {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 16px;
+}
+.client-card {
+  background: var(--white); border-radius: var(--radius);
+  padding: 32px 24px; text-align: center;
+  box-shadow: var(--shadow);
+}
+.client-card .industry {
+  font-size: 12px; font-weight: 600; text-transform: uppercase;
+  color: var(--accent); letter-spacing: 1px; margin-bottom: 12px;
+}
+.client-card .name {
+  font-size: 18px; font-weight: 700; color: var(--dark);
+  margin-bottom: 8px;
+}
+.client-card .desc {
+  font-size: 14px; color: var(--text-light);
+}
+
+/* Testimonials */
+.testimonial {
+  background: var(--white); border-radius: var(--radius);
+  padding: 40px; box-shadow: var(--shadow);
+  margin-bottom: 24px;
+  border-left: 4px solid var(--primary-light);
+}
+.testimonial blockquote {
+  font-size: 18px; font-style: italic; color: var(--text);
+  margin-bottom: 16px;
+}
+.testimonial .author {
+  font-size: 14px; color: var(--text-light);
+  font-weight: 600;
+}
+
+/* Process */
+.process-grid {
+  display: grid; grid-template-columns: repeat(6, 1fr);
+  gap: 16px;
+}
+.process-step {
+  text-align: center;
+  padding: 24px 16px;
+  background: var(--white);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+.process-step .step-num {
+  width: 40px; height: 40px; border-radius: 50%;
+  background: var(--gradient);
+  color: var(--white); font-weight: 700;
+  display: flex; align-items: center; justify-content: center;
+  margin: 0 auto 12px;
+}
+.process-step h4 { font-size: 15px; font-weight: 700; margin-bottom: 4px; }
+.process-step p { font-size: 13px; color: var(--text-light); }
+
+/* Culture */
+.culture-grid {
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+}
+.culture-item {
+  text-align: center; padding: 48px 24px;
+  background: var(--white); border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+.culture-item .icon {
+  font-size: 40px; margin-bottom: 16px;
+}
+.culture-item h4 { font-size: 18px; font-weight: 700; margin-bottom: 8px; }
+
+/* Vision Banner */
+.vision-banner {
+  background: var(--gradient);
+  padding: 80px 40px;
+  text-align: center; color: var(--white);
+  border-radius: var(--radius);
+  margin-bottom: 40px;
+}
+.vision-banner h2 {
+  font-size: 36px; font-weight: 700; margin-bottom: 16px;
+}
+
+/* Contact */
+.contact {
+  background: var(--dark); color: var(--white);
+  padding: 80px 40px; text-align: center;
+}
+.contact h2 { font-size: 36px; font-weight: 700; margin-bottom: 16px; }
+.contact p { font-size: 18px; opacity: 0.7; margin-bottom: 40px; }
+.contact-btn {
+  display: inline-block;
+  background: var(--accent); color: var(--white);
+  padding: 16px 40px; border-radius: 50px;
+  font-size: 18px; font-weight: 700; text-decoration: none;
+  transition: all 0.3s;
+}
+.contact-btn:hover { background: var(--accent-light); transform: scale(1.05); }
+
+/* Footer */
+.footer {
+  background: #111; color: rgba(255,255,255,0.5);
+  text-align: center; padding: 32px;
+  font-size: 14px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .nav-links { display: none; }
+  .hero h1 { font-size: 36px; }
+  .hero-stats { flex-direction: column; gap: 24px; }
+  .section { padding: 60px 20px; }
+  .section-title { font-size: 28px; }
+  .process-grid { grid-template-columns: repeat(2, 1fr); }
+  .culture-grid { grid-template-columns: repeat(2, 1fr); }
+}
+</style>
+</head>
+<body>
+
+<!-- Navigation -->
+<nav class="nav" id="nav">
+  <div class="nav-logo">悠兰体育<span>.</span></div>
+  <ul class="nav-links">
+    <li><a href="#about">公司简介</a></li>
+    <li><a href="#advantage">核心优势</a></li>
+    <li><a href="#business">业务体系</a></li>
+    <li><a href="#clients">服务客户</a></li>
+    <li><a href="#culture">企业文化</a></li>
+  </ul>
+  <a href="#contact" class="nav-cta">联系我们</a>
+</nav>
+
+<!-- Hero -->
+<section class="hero">
+  <div class="hero-content">
+    <div class="hero-badge">🏆 上海最早专业企业体育服务商之一</div>
+    <h1>赋能健康职场<br><span>让每个职场人享受运动快乐</span></h1>
+    <p>11年行业深耕 · 300+企业信赖 · 10万+员工受益</p>
+    <div class="hero-stats">
+      <div class="hero-stat">
+        <div class="num">300+</div>
+        <div class="label">服务企业</div>
+      </div>
+      <div class="hero-stat">
+        <div class="num">200+</div>
+        <div class="label">专业教练</div>
+      </div>
+      <div class="hero-stat">
+        <div class="num">98%</div>
+        <div class="label">客户满意度</div>
+      </div>
+      <div class="hero-stat">
+        <div class="num">90%+</div>
+        <div class="label">续约率</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- About -->
+<section class="section" id="about">
+  <div class="section-label">01 · 公司简介</div>
+  <div class="section-title">赋能健康职场，提升员工幸福感与效率</div>
+  <div class="section-desc">2015年成立，上海最早专业从事企业体育服务的企业之一。致力于为企业提供全链条一站式员工健康解决方案。</div>
+
+  <div class="timeline">
+    <div class="timeline-item">
+      <div class="timeline-year">2015</div>
+      <div class="timeline-title">初创启航</div>
+      <div class="timeline-desc">公司正式成立，率先推出企业瑜伽课程，开创上海企业体育服务先河。</div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-year">2017</div>
+      <div class="timeline-title">品类拓展</div>
+      <div class="timeline-desc">业务扩展至全品类健身课程与健康讲座，服务能力全面提升。</div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-year">2019</div>
+      <div class="timeline-title">赛事升级</div>
+      <div class="timeline-desc">成立赛事事业部，承接大型企业运动会及体育赛事的一站式策划执行。</div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-year">2025</div>
+      <div class="timeline-title">规模领跑</div>
+      <div class="timeline-desc">累计服务超300家企业，覆盖员工超10万人，成为行业标杆品牌。</div>
+    </div>
+  </div>
+</section>
+
+<!-- Advantages -->
+<section class="section" id="advantage" style="background: var(--white); max-width: 100%; padding: 100px 40px;">
+  <div style="max-width: 1200px; margin: 0 auto;">
+    <div class="section-label">02 · 核心优势</div>
+    <div class="section-title">十年行业积淀，铸就专业品质</div>
+    <div class="section-desc">以专业为基石，以服务为核心，持续为企业打造健康活力的员工生态体系。</div>
+
+    <div class="cards-grid">
+      <div class="card">
+        <div class="card-icon green">📅</div>
+        <h3>11年行业深耕</h3>
+        <p>深耕企业体育服务行业11年，拥有成熟的标准化服务体系和丰富的项目经验。</p>
+      </div>
+      <div class="card">
+        <div class="card-icon orange">👨‍🏫</div>
+        <h3>200+ 专业教练团</h3>
+        <p>汇聚200+持证专业教练，涵盖瑜伽、舞蹈、健身、养生等多个专业领域。</p>
+      </div>
+      <div class="card">
+        <div class="card-icon blue">🔗</div>
+        <h3>全链条一站式服务</h3>
+        <p>从需求沟通到方案执行，提供一站式解决方案，支持高度个性化定制。</p>
+      </div>
+      <div class="card">
+        <div class="card-icon purple">⭐</div>
+        <h3>标杆客户信赖</h3>
+        <p>服务众多世界500强及头部企业，客户满意度98%，续约率超90%。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Business -->
+<section class="section" id="business">
+  <div class="section-label">03 · 业务体系</div>
+  <div class="section-title">全方位企业体育健康服务</div>
+
+  <!-- 课程配送 -->
+  <div class="biz-section">
+    <h3>📋 课程配送</h3>
+    <div class="subtitle">灵活时间 · 多样形式 · 完善配套</div>
+    <div class="tag-list">
+      <span class="tag">🧘 哈他瑜伽</span>
+      <span class="tag">🧘 流瑜伽</span>
+      <span class="tag">🧘 办公室瑜伽</span>
+      <span class="tag">🧘 肩颈理疗</span>
+      <span class="tag">💃 爵士舞</span>
+      <span class="tag">💃 尊巴</span>
+      <span class="tag">💃 拉丁舞</span>
+      <span class="tag">💪 搏击操</span>
+      <span class="tag">💪 普拉提</span>
+      <span class="tag">💪 核心训练</span>
+      <span class="tag">☯️ 太极</span>
+      <span class="tag">☯️ 八段锦</span>
+      <span class="tag">☯️ 五禽戏</span>
+    </div>
+    <p style="color: var(--text-light); font-size: 15px;">
+      支持午休、下班后及周末时段 · 小班课/大班课/一对一 · 提供瑜伽垫、音响等配套器材
+    </p>
+  </div>
+
+  <!-- 健康讲座 -->
+  <div class="biz-section">
+    <h3>🎙️ 健康讲座</h3>
+    <div class="subtitle">线下互动 · 线上直播 · 系列专题</div>
+    <div class="cards-grid">
+      <div class="card">
+        <div class="card-icon green">🏥</div>
+        <h3>职场健康防护</h3>
+        <p>办公室常见病预防、肩颈腰椎保护，实用易学的日常防护指南。</p>
+      </div>
+      <div class="card">
+        <div class="card-icon orange">🥗</div>
+        <h3>科学生活方式</h3>
+        <p>合理膳食搭配、科学睡眠指导、压力管理技巧，全方位提升生活品质。</p>
+      </div>
+      <div class="card">
+        <div class="card-icon blue">🚑</div>
+        <h3>运动安全急救</h3>
+        <p>运动损伤预防知识、科学健身方法、常见运动急救技能培训。</p>
+      </div>
+      <div class="card">
+        <div class="card-icon purple">🧠</div>
+        <h3>心理调适平衡</h3>
+        <p>职场心理调适方法、工作生活平衡策略，关注员工心理健康。</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- 体育赛事 -->
+  <div class="biz-section">
+    <h3>🏟️ 体育赛事举办</h3>
+    <div class="subtitle">一站式企业体育赛事解决方案</div>
+    <div class="cards-grid">
+      <div class="card">
+        <div class="card-icon green">🏃</div>
+        <h3>企业运动会</h3>
+        <p>趣味运动会、综合运动会，通过创意关卡与互动游戏释放员工压力。</p>
+      </div>
+      <div class="card">
+        <div class="card-icon orange">🏙️</div>
+        <h3>城市健身跑</h3>
+        <p>迷你马拉松、城市定向赛，结合公益扩大品牌影响力。</p>
+      </div>
+      <div class="card">
+        <div class="card-icon blue">⚽</div>
+        <h3>球类赛事</h3>
+        <p>篮球、足球、羽毛球联赛，激发团队凝聚力和竞争精神。</p>
+      </div>
+      <div class="card">
+        <div class="card-icon purple">🎯</div>
+        <h3>其他赛事</h3>
+        <p>拔河、跳绳、棋牌比赛等多样化活动，满足不同兴趣需求。</p>
+      </div>
+    </div>
+    <p style="margin-top: 20px; color: var(--text-light); font-size: 15px;">
+      ✅ 全流程服务：赛事策划 · 场地布置 · 裁判派遣 · 现场管理 · 摄影摄像 · 奖品定制
+    </p>
+  </div>
+</section>
+
+<!-- Clients -->
+<section class="section" id="clients" style="background: var(--white); max-width: 100%; padding: 100px 40px;">
+  <div style="max-width: 1200px; margin: 0 auto;">
+    <div class="section-label">04 · 服务客户</div>
+    <div class="section-title">多元行业的深度服务实践</div>
+    <div class="section-desc">以专业服务品质获得各行业头部企业信赖</div>
+
+    <div class="client-logos">
+      <div class="client-card">
+        <div class="industry">科技行业</div>
+        <div class="name">Oracle 甲骨文</div>
+        <div class="desc">全球领先企业云服务商，定制员工健康管理方案</div>
+      </div>
+      <div class="client-card">
+        <div class="industry">金融领域</div>
+        <div class="name">瑞典银行</div>
+        <div class="desc">北欧领先金融机构，保障员工活力</div>
+      </div>
+      <div class="client-card">
+        <div class="industry">金融领域</div>
+        <div class="name">上海信托</div>
+        <div class="desc">头部信托机构，长期合作伙伴</div>
+      </div>
+      <div class="client-card">
+        <div class="industry">金融领域</div>
+        <div class="name">浦发银行</div>
+        <div class="desc">全国性股份制商业银行</div>
+      </div>
+      <div class="client-card">
+        <div class="industry">金融领域</div>
+        <div class="name">海通恒信</div>
+        <div class="desc">知名融资租赁公司</div>
+      </div>
+      <div class="client-card">
+        <div class="industry">医药健康</div>
+        <div class="name">GSK 葛兰素史克</div>
+        <div class="desc">全球医药健康巨头</div>
+      </div>
+      <div class="client-card">
+        <div class="industry">专业服务</div>
+        <div class="name">上海外服 FSG</div>
+        <div class="desc">人力资源服务领军企业</div>
+      </div>
+      <div class="client-card">
+        <div class="industry">专业服务</div>
+        <div class="name">中伦律师事务所</div>
+        <div class="desc">国内顶尖律所</div>
+      </div>
+      <div class="client-card">
+        <div class="industry">地产行业</div>
+        <div class="name">新鸿基地产</div>
+        <div class="desc">香港最大地产发展商之一</div>
+      </div>
+      <div class="client-card">
+        <div class="industry">金融领域</div>
+        <div class="name">光大保德信</div>
+        <div class="desc">中外合资基金管理公司</div>
+      </div>
+    </div>
+
+    <!-- Testimonials -->
+    <div style="margin-top: 60px;">
+      <div class="testimonial">
+        <blockquote>"课程质量高，教练专业，极大地丰富了我们的企业文化生活。"</blockquote>
+        <div class="author">—— 某世界500强企业人力资源总监</div>
+      </div>
+      <div class="testimonial">
+        <blockquote>"从策划到执行都非常出色，让我们的企业运动会圆满成功。"</blockquote>
+        <div class="author">—— 某大型金融机构行政经理</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Process -->
+<section class="section" id="process">
+  <div class="section-label">05 · 服务流程</div>
+  <div class="section-title">标准化六步服务流程</div>
+  <div class="section-desc">从需求到交付，每一步都精益求精</div>
+
+  <div class="process-grid">
+    <div class="process-step">
+      <div class="step-num">01</div>
+      <h4>需求沟通</h4>
+      <p>深入了解企业需求</p>
+    </div>
+    <div class="process-step">
+      <div class="step-num">02</div>
+      <h4>方案定制</h4>
+      <p>制定个性化方案</p>
+    </div>
+    <div class="process-step">
+      <div class="step-num">03</div>
+      <h4>合同签订</h4>
+      <p>明确内容与费用</p>
+    </div>
+    <div class="process-step">
+      <div class="step-num">04</div>
+      <h4>项目执行</h4>
+      <p>严格执行确保质量</p>
+    </div>
+    <div class="process-step">
+      <div class="step-num">05</div>
+      <h4>效果评估</h4>
+      <p>收集反馈评估效果</p>
+    </div>
+    <div class="process-step">
+      <div class="step-num">06</div>
+      <h4>持续优化</h4>
+      <p>根据反馈改进服务</p>
+    </div>
+  </div>
+</section>
+
+<!-- Culture -->
+<section class="section" id="culture" style="background: var(--white); max-width: 100%; padding: 100px 40px;">
+  <div style="max-width: 1200px; margin: 0 auto;">
+    <div class="section-label">06 · 企业文化</div>
+
+    <div class="vision-banner">
+      <h2>成为中国领先的企业体育健康服务提供商<br>让每个职场人享受运动快乐</h2>
+    </div>
+
+    <div class="culture-grid">
+      <div class="culture-item">
+        <div class="icon">🎯</div>
+        <h4>客户至上</h4>
+        <p style="color: var(--text-light);">以客户需求为中心</p>
+      </div>
+      <div class="culture-item">
+        <div class="icon">💎</div>
+        <h4>专业专注</h4>
+        <p style="color: var(--text-light);">专注企业体育服务</p>
+      </div>
+      <div class="culture-item">
+        <div class="icon">🚀</div>
+        <h4>创新进取</h4>
+        <p style="color: var(--text-light);">不断创新服务与形式</p>
+      </div>
+      <div class="culture-item">
+        <div class="icon">🤝</div>
+        <h4>团队协作</h4>
+        <p style="color: var(--text-light);">凝聚力量共同成长</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Contact -->
+<section class="contact" id="contact">
+  <h2>携手共创健康、活力、高效的职场环境</h2>
+  <p>为您的企业量身定制员工健康解决方案</p>
+  <a href="#" class="contact-btn">立即咨询</a>
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+  © 2025 上海悠兰体育发展有限公司. All rights reserved.
+</footer>
+
+<script>
+// Nav scroll effect
+window.addEventListener('scroll', () => {
+  document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 50);
+});
+
+// Smooth scroll
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    e.preventDefault();
+    const target = document.querySelector(a.getAttribute('href'));
+    if (target) target.scrollIntoView({ behavior: 'smooth' });
+  });
+});
+</script>
+
+</body>
+</html>
